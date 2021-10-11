@@ -1,3 +1,7 @@
+.vs
+
 bin
 build
 external
+
+CMakeSettings.json
