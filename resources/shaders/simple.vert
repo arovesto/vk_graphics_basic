@@ -21,6 +21,7 @@ layout (location = 0 ) out VS_OUT
     vec3 wNorm;
     vec3 wTangent;
     vec2 texCoord;
+    vec4 color;
 
 } vOut;
 
@@ -34,6 +35,7 @@ void main(void)
     vOut.wNorm    = mat3(transpose(inverse(params.mModel))) * wNorm.xyz;
     vOut.wTangent = mat3(transpose(inverse(params.mModel))) * wTang.xyz;
     vOut.texCoord = vTexCoordAndTang.xy;
+    vOut.color = vec4(abs(log(vOut.wNorm * 40)) + 10, 1);
 
     gl_Position   = params.mProjView * vec4(vOut.wPos, 1.0);
 }

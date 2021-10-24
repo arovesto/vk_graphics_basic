@@ -12,6 +12,7 @@ layout (location = 0 ) in VS_OUT
   vec3 wNorm;
   vec3 wTangent;
   vec2 texCoord;
+  vec4 color;
 } surf;
 
 layout(binding = 0, set = 0) uniform AppData
@@ -33,7 +34,7 @@ void main()
   const vec4 dark_violet = vec4(0.59f, 0.0f, 0.82f, 1.0f);
   const vec4 chartreuse  = vec4(0.5f, 1.0f, 0.0f, 1.0f);
 
-  vec4 lightColor1 = mix(dark_violet, chartreuse, abs(sin(Params.time)));
+  vec4 lightColor1 = vec4(abs(log(surf.wNorm * 40)) + 10, 1); // surf.color // mix(dark_violet, chartreuse, abs(sin(Params.time)));
   vec4 lightColor2 = vec4(1.0f, 1.0f, 1.0f, 1.0f);
    
   vec3 lightDir   = normalize(Params.lightPos - surf.wPos);
